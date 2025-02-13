@@ -1,0 +1,45 @@
+# Node.js (React frontend)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.DS_Store
+frontend/.next/
+frontend/coverage/
+frontend/public/*.cache
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.eslintcache
+frontend/.parcel-cache
+
+# Python (Flask backend)
+backend/venv/
+backend/__pycache__/
+backend/.env
+backend/.DS_Store
+
+# Virtual environment (if outside backend)
+venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temp files
+*.log
+*.out
+*.pid
+*.gz
+*.sqlite3
+
+# Docker-related
+docker-compose.override.yml
+backend/__pycache__/
+dist/
+coverage/
+
+# Environment and secrets
+.env
+*.env.local
