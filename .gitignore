@@ -17,6 +17,7 @@ backend/venv/
 backend/__pycache__/
 backend/.env
 backend/.DS_Store
+backend/dataset
 
 # Virtual environment (if outside backend)
 venv/
