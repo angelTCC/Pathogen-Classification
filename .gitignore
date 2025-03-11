@@ -18,6 +18,8 @@ backend/__pycache__/
 backend/.env
 backend/.DS_Store
 backend/dataset
+backend/models/kt_logs
+backend/models/my_logs
 
 # Virtual environment (if outside backend)
 venv/
