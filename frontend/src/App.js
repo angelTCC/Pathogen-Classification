@@ -1,12 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import FileUpload from './components/FileUpload';
+import ImageUpload from "./components/ImageUpload";
 
 function App() {
   return (
     <div>
-      <h1>Pathogen Classification</h1>
-      <FileUpload />
+      <h1>Pathogen Classification App</h1>
+      <ImageUpload />
     </div>
   );
 }
