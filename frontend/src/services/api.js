@@ -1,8 +1,8 @@
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
-export const uploadImage = async (file) => {
+export const ModelPrediction = async (file) => {
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("image", file);
 
   try {
     const response = await fetch(`${API_URL}/predict`, {
