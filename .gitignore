@@ -53,3 +53,4 @@ train_model/dataset
 train_model/my_logs
 train_model/kt_logs
 train_model/__pycache__
+.pytest_cache
