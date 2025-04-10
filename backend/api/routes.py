@@ -4,10 +4,11 @@ import os
 from PIL import Image
 import io
 
-from models.model_loader import model
+from utils.model_loader import load_ml_model
 from utils.preprocessing import preprocess_image
 
 app = Blueprint("api", __name__)
+model = load_ml_model()
 
 # Class Labels
 CLASS_NAMES = ["Bacteria", "Fungi", "Healthy", "Pests", "Virus"]
@@ -19,10 +20,10 @@ def home():
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
-        if "file" not in request.files:
+        if "image" not in request.files:
             return jsonify({"error": "No file provided"}), 400
 
-        file = request.files["file"]
+        file = request.files["image"]
         image = Image.open(io.BytesIO(file.read())).convert("RGB")
 
         # Preprocess image
@@ -30,12 +31,11 @@ def predict():
 
         # Make prediction
         predictions = model.predict(image)
-        predicted_class = CLASS_NAMES[np.argmax(predictions)]
-        confidence = float(np.max(predictions))
+        confidence = predictions[0]
 
         return jsonify({
-            "prediction": predicted_class,
-            "confidence": confidence
+            "prediction": CLASS_NAMES,
+            "confidence": confidence.tolist()
         })
 
     except Exception as e:

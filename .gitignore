@@ -49,6 +49,7 @@ coverage/
 *.env.local
 
 
-models_data/dataset
-models_data/my_logs
-models_data/kt_logs
+train_model/dataset
+train_model/my_logs
+train_model/kt_logs
+train_model/__pycache__

@@ -1,25 +1,18 @@
-import unittest
-import json
-import os, sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from app import app  # Import your Flask app
+import os
 
-class APITestCase(unittest.TestCase):
-    def setUp(self):
-        self.client = app.test_client()
-        self.client.testing = True
+class TestPredictEndpoint:
+    image_path = "./backend/tests/test_img.jpg"
 
-    def test_predict_endpoint(self):
-        """Test /predict endpoint with an image file"""
-        image_path = "../../models_data/dataset/train/Bacteria/image_255.jpg"  # Update with an actual image path
+    def test_valid_image(self, client):
+        assert os.path.exists(self.image_path), "Test image not found"
 
-        with open(image_path, "rb") as img:
-            response = self.client.post("/predict", data={"image": img})
-        
-        print("Response Status Code:", response.status_code)
-        print("Response Data:", response.data.decode())  # Show response details
-        
-        self.assertEqual(response.status_code, 200)  # Expect 200 if successful
+        with open(self.image_path, "rb") as img:
+            response = client.post("/predict", data={"image": img})
 
-if __name__ == "__main__":
-    unittest.main()
+        assert response.status_code == 200
+        assert b"prediction" in response.data.lower() or b"result" in response.data.lower()
+
+    def test_missing_file(self, client):
+        response = client.post("/predict", data={})
+        assert response.status_code in (400, 422)
+        assert b"error" in response.data.lower()
